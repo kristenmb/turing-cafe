@@ -19,4 +19,14 @@ describe('Turing Cafe', () => {
     cy.get('.app-title').should('contain', 'Turing Cafe')
   });
 
+  it ('Should display the reservation form with four inputs and a button', () => {
+  cy.get('.reservation-form')
+    .find('input[type=text]').should('have.length', 3)
+
+    .get('.reservation-form')
+    .find('input[type=number]').should('have.length', 1)
+
+    .get('.reservation-form')
+    .find('button').should('contain', 'Make A Reservation')
+  });
 })
