@@ -8,7 +8,7 @@ class Form extends Component {
       name: "",
       date: "",
       time: "",
-      number: null
+      number: ""
     }
   }
 
@@ -37,6 +37,7 @@ class Form extends Component {
     return (
     <form className="reservation-form">
       <input
+        className="name-input"
         type="text"
         placeholder="Name"
         name="name"
@@ -44,6 +45,7 @@ class Form extends Component {
         onChange={this.handleChange}
       />
       <input
+        className="date-input"
         type="text"
         placeholder="Date(mm/dd)"
         name="date"
@@ -51,6 +53,7 @@ class Form extends Component {
         onChange={this.handleChange}
       />
       <input
+        className="time-input"
         type="text"
         placeholder="Time"
         name="time"
@@ -58,6 +61,7 @@ class Form extends Component {
         onChange={this.handleChange}
       />
       <input
+        className="number-input"
         type="number"
         placeholder="Number of guests"
         name="number"

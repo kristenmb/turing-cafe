@@ -52,4 +52,19 @@ describe('Turing Cafe', () => {
       .get('.resy-btn').should('have.length', 5)
   })
 
+  it('Inputs can be typed into', () => {
+    cy.get('form .name-input[type=text]').type('Kristen')
+      .should('have.value', 'Kristen')
+
+    cy.get('form .date-input[type=text]').type('3/12')
+      .should('have.value', '3/12')
+
+    cy.get('form .time-input[type=text]').type('6:30')
+      .should('have.value', '6:30')
+
+    cy.get('form .number-input[type=number]').type(3)
+      .should('have.value', 3)      
+  })
+
+  
 })
