@@ -71,7 +71,19 @@ describe('Turing Cafe', () => {
 
     cy.get('.resy-container .single-resy')
       .get('.resy-name').should('have.length', 6)
-
   })
 
+  it('Form should be cleared after reservation is made', () => {
+     cy.get('form .name-input[type=text]')
+      .should('have.value', '')
+
+    cy.get('form .date-input[type=text]')
+      .should('have.value', '')
+
+    cy.get('form .time-input[type=text]')
+      .should('have.value', '')
+
+    cy.get('form .number-input[type=number]')
+      .should('have.value', '')   
+  })
 })
