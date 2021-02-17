@@ -25,12 +25,26 @@ class App extends Component {
       .catch(err => {console.log(err)})
   }
 
-  componentDidMount() {
+  removeResy = (idNum) => {
+    fetch(`http://localhost:3001/api/v1/reservations/${idNum}`, {
+      method: 'DELETE' 
+    })
+      .then(response => response.json())
+      .then(data => this.fetchData())
+      .catch(err => {console.log(err)})
+ 
+  }
+
+  fetchData = () => {
     fetch('http://localhost:3001/api/v1/reservations')
       .then(response => response.json())
       .then(reservations => {
         this.setState({ allReservations: reservations })
       })
+  }
+
+  componentDidMount() {
+    this.fetchData()
   }
   
   render() {
@@ -43,7 +57,7 @@ class App extends Component {
           <Form addResy={this.addResy}/>
         </div>
         <div className='resy-container'>
-          <Reservation allReservations={this.state.allReservations}/>
+          <Reservation allReservations={this.state.allReservations} removeResy={this.removeResy}/>
         </div>
       </div>
     )
