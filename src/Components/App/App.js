@@ -12,6 +12,10 @@ class App extends Component {
     }
   }
 
+  addResy = (newResy) => {
+    this.setState({ allReservations: [...this.state.allReservations, newResy] })
+  }
+
   componentDidMount() {
     fetch('http://localhost:3001/api/v1/reservations')
       .then(response => response.json())
@@ -21,11 +25,13 @@ class App extends Component {
   }
   
   render() {
+    console.log(this.state.allReservations)
+
     return (
       <div className="App">
         <h1 className='app-title'>Turing Cafe Reservations</h1>
         <div className='resy-form'>
-          <Form />
+          <Form addResy={this.addResy}/>
         </div>
         <div className='resy-container'>
           <Reservation allReservations={this.state.allReservations}/>

@@ -2,11 +2,35 @@ import React, { Component } from 'react'
 import './Form.css'
 
 class Form extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
-
+      name: "",
+      date: "",
+      time: "",
+      numGuests: ""
     }
+  }
+
+  handleChange = (event) => {
+    const { name, value } = event.target
+    this.setState({ [name]: value })
+  }
+
+  saveReservation = (event) => {
+    event.preventDefault();
+    const newResy = {
+      ...this.state,
+      id: Date.now()
+    }
+    console.log(newResy)
+    this.props.addResy(newResy);
+    
+    this.clearInputs();
+  }
+
+  clearInputs = () => {
+    this.setState({ name: "", date: "", time: "", numGuests: "" })
   }
 
   render() {
@@ -40,7 +64,7 @@ class Form extends Component {
         value={this.state.numGuests}
         onChange={this.handleChange}
       />
-      <button onClick={this.submitReservation}>Make A Reservation</button>
+      <button onClick={this.saveReservation}>Make A Reservation</button>
     </form>
     )
   }
