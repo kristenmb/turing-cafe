@@ -29,4 +29,27 @@ describe('Turing Cafe', () => {
     .get('.reservation-form')
     .find('button').should('contain', 'Make A Reservation')
   });
+
+  it('Should load the page with the correct number of cards', () => {
+    cy.get('.resy-container')
+      .find('.single-resy').should('have.length', 5)
+  })
+
+   it('Each card should have the correct information displayed as well as a cancel button', () => {
+    cy.get('.resy-container .single-resy')
+      .get('.resy-name').should('have.length', 5)
+
+    cy.get('.resy-container .single-resy')
+      .get('.resy-date').should('have.length', 5)
+
+    cy.get('.resy-container .single-resy')
+      .get('.resy-time').should('have.length', 5)
+
+    cy.get('.resy-container .single-resy')
+      .get('.resy-number').should('have.length', 5)
+
+    cy.get('.resy-container .single-resy')
+      .get('.resy-btn').should('have.length', 5)
+  })
+
 })
