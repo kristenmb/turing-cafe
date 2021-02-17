@@ -21,6 +21,7 @@ class Form extends Component {
     event.preventDefault();
     const newResy = {
       ...this.state,
+      number: parseInt(this.state.number),
       id: Date.now()
     }
     console.log(newResy)
