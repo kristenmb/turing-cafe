@@ -21,3 +21,17 @@
 .resy-form {
   width: 100vw
 }
+
+.resy-container {
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+button {
+  color: white;
+  background-color: teal;
+  border: 1pt solid white;
+  width: 15vw;
+  height: 1.5rem;
+}

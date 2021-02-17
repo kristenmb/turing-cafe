@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Form from '../Form/Form'
+import Reservation from '../Reservation/Reservation'
+
 import './App.css';
 
 class App extends Component {
@@ -26,7 +28,7 @@ class App extends Component {
           <Form />
         </div>
         <div className='resy-container'>
-          
+          <Reservation allReservations={this.state.allReservations}/>
         </div>
       </div>
     )
