@@ -2,13 +2,22 @@ describe('Turing Cafe', () => {
 
   const baseUrl = 'http://localhost:3000'
 
-  before(() => {
+  beforeEach(() => {
     cy
     .fixture('resyData.json')
     .then((reservations) => {
       cy.intercept('GET', 'http://localhost:3001/api/v1/reservations', {
         statusCode: 200,
         body: reservations.resys
+      })
+    })
+
+    cy
+    .fixture('resyData.json')
+    .then((reservations) => {
+      cy.intercept('POST', 'http://localhost:3001/api/v1/reservations', {
+        statusCode: 200,
+        body: reservations.post
       })
     })
     
@@ -71,6 +80,7 @@ describe('Turing Cafe', () => {
   })
 
   it('Should be able to click make a reservation button and see new Res displays', () => {
+  
     cy.get('form button').click()
 
     cy.get('.resy-container .single-resy')
@@ -90,9 +100,14 @@ describe('Turing Cafe', () => {
     cy.get('form .number-input[type=number]')
       .should('have.value', '')   
   })
+})
 
-  it('Should be able to cancel a reservation and remove it from view', () => {
-     cy
+describe('Turing Cafe- delete reservation', () => {
+
+  const baseUrl = 'http://localhost:3000'
+
+  beforeEach(() => {
+    cy
     .fixture('resyData.json')
     .then((reservations) => {
       cy.intercept('GET', 'http://localhost:3001/api/v1/reservations', {
@@ -100,8 +115,27 @@ describe('Turing Cafe', () => {
         body: reservations.resys
       })
     })
+    
+    cy.visit(baseUrl)
+  })
+
+  it('Should be able to cancel a reservation and remove it from view', () => {
+    cy.get('form .name-input[type=text]').type('Kristen')
+      .should('have.value', 'Kristen')
+
+    cy.get('form .date-input[type=text]').type('3/12')
+      .should('have.value', '3/12')
+
+    cy.get('form .time-input[type=text]').type('6:30')
+      .should('have.value', '6:30')
+
+    cy.get('form .number-input[type=number]').type(3)
+      .should('have.value', 3)    
+
+    cy.get('form button').click()
 
     cy.get('#Kristen').find('.resy-btn').click()
+
 
     cy.get('.resy-container')
       .find('.single-resy').should('have.length', 5)
