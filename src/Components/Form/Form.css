@@ -1,0 +1,5 @@
+.reservation-form {
+  width: 95vw;
+  display: flex;
+  justify-content: space-evenly;
+}
