@@ -13,11 +13,15 @@ describe('Turing Cafe', () => {
     })
     
     cy.visit(baseUrl)
-  });
+  })
 
   it ('Should display the site heading ', () => {
     cy.get('.app-title').should('contain', 'Turing Cafe')
-  });
+  })
+
+  it('Should load the page with a background image', () => {
+    cy.get('.App').should('have.css', 'background-image', 'url("http://localhost:3000/static/media/cafe-img.12c28102.jpeg")')
+  })
 
   it ('Should display the reservation form with four inputs and a button', () => {
   cy.get('.reservation-form')
