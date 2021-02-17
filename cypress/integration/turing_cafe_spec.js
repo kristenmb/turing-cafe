@@ -90,4 +90,20 @@ describe('Turing Cafe', () => {
     cy.get('form .number-input[type=number]')
       .should('have.value', '')   
   })
+
+  it('Should be able to cancel a reservation and remove it from view', () => {
+     cy
+    .fixture('resyData.json')
+    .then((reservations) => {
+      cy.intercept('GET', 'http://localhost:3001/api/v1/reservations', {
+        statusCode: 200,
+        body: reservations.resys
+      })
+    })
+
+    cy.get('#Kristen').find('.resy-btn').click()
+
+    cy.get('.resy-container')
+      .find('.single-resy').should('have.length', 5)
+  })
 })

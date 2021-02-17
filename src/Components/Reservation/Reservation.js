@@ -8,7 +8,7 @@ const Reservation = ({ allReservations, removeResy }) => {
   
   const reservationCards = allReservations.map(resy => {
     return (
-      <article key={resy.id} className="single-resy">
+      <article key={resy.id} id={resy.name} className="single-resy">
         <h2 className="resy-name">{resy.name}</h2>
         <p className="resy-date">{resy.date}</p>
         <p className="resy-time">{resy.time}</p>
